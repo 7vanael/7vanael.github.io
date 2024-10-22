@@ -1,7 +1,4 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import Footer from './components/Footer.vue'
-</script>
+
 
 <template>
   <!-- <div>
@@ -29,6 +26,11 @@ import Footer from './components/Footer.vue'
     <Footer />
   </div>
 </template>
+
+<script setup>
+import HelloWorld from './components/HelloWorld.vue'
+import Footer from './components/Footer.vue'
+</script>
 
 <style scoped>
 /* .logo {
