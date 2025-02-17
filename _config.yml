@@ -1,2 +1,4 @@
 name: Kristi Korn, Clean Coder
 markdown: kramdown
+
+permalink: /blog/:year/:month/:day/:title
