@@ -13,8 +13,7 @@ in the crowd with everyone else doing their own thing and no one
 worried about what ever anyone else was up to. 
 
 Performing for an audience with everyone watching is a rather uncomfortable
-experience at best, and certainly not helped by also being a novice and knowing
-that constructive feedback from mostly strangers awaits. 
+experience at best. 
 
 Does it get better in time, or is this experience of discomfort the point?
 I guess we'll find out in time.
