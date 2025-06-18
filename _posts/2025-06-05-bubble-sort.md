@@ -30,6 +30,11 @@ BubbleSorting DataStructures.ArrayList:
 Time: 219.280792 milliseconds
 Final size: 10000
 ````
+That's a run time of +11 minutes on LinkedList!
+
+An early termination mechanism had no significant improvement in 
+run time that I found, but may in some cases for particular data 
+sets that are close to sorted, so I left it in.
 
 To get it to run in any reasonable amount of time, I had to add 
 specialized functions to my datastructures. I started with methods 
