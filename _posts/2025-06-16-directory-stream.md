@@ -11,7 +11,7 @@ So you'd like to navigate some directories? Me too, but where do you start?
 Java has a nifty DirectoryStream method that accepts a root/directory path. 
 `DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dir))`
 
-You can then itterate over the Paths contained in the directory in a simple 
+You can then iterate over the Paths contained in the directory in a simple 
 for loop and.. do what ever makes sense once you get them! 
 
 ````
