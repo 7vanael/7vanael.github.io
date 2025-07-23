@@ -6,61 +6,34 @@ date: 2025-07-17
 
 ## Agile Estimating and Planning; Chapter 2
 
-Sometimes you have a piece of data that you want to transform (only always, right?)
-But, sometimes that data might not actually be there. You only want to call the 
-transformations if it exists (lets not go getting those null pointer exceptions going)!
+The majority of this chapter is an inditement of waterfall software development. It argues that most plans 
+are made by activity (Add tables to database -> code middle tier -> test) and details the numerous reasons
+that's a terrible idea. Most of his points are well addressed by agile development that focuses on early 
+functional product delivery and subsequent delivery of features as prioritized by the client. 
 
-You might have some function that goes like: 
-````
-(defn add-form-data-to-state [request state]
-  (let [form-data (get-form-data request)
-        response (when (seq form-data) (keyword (first (vals form-data))))]
-    (if (seq form-data)
-      (assoc state :response response)
-      state)))
-````
-If you have form data, get the value, just the first one, then turn it into a keyword. 
-Then you're clear to add it to the state. 
+He has a few points that are still worth making note of, even in an agile framework: 
 
-We could make this a little better by threading it: 
+#### Multitasking Causes Further Delays
+Efficiency peaks at 2 tasks assigned simultaneously. Cohn posits that if you have two assigned tasks, 
+you can switch to task B if you get blocked on task A. Over time you may figure out how to not be blocked 
+by A (or fill your time productively until it's convenient for help to arrive) and then can continue to 
+make progress there. Adding additional tasks only diminishes productivity, likely caused at least in 
+part to frequent context switching. 
 
-````
-        response (when (seq form-data)
-                    (-> form-data 
-                     vals 
-                     first 
-                     keyword))]
-````
-But, it turns out we can simplify the conditional and combine it with the instructions 
-to thread in a single function: some->
+#### Uncertainty goes Ignored
+When we pretend we can assign precise estimates to imprecise work, that's ignoring the uncertainty 
+of the task. He proposes a date range instead of a single date, and that range may get more narrow 
+the closer we get to it. And, if we plan iteratively, even if we were inaccurate the first time, 
+we should get more accurate the next.
 
-````
-(defn add-form-data-to-state [request state]
-  (let [form-data (get-form-data request)
-        response (some-> form-data vals first keyword)]
-    (if (seq form-data)
-      (assoc state :response response)
-      state)))
-````
 
-Now you have a much more readable (and shorter!) function.
-
-This is remarkably similar functionality to another handy function, cond->
-As you may suspect, cond-> is a threader, but instead of listing just the functions
-you'd like to use in your transformation, you can also provide the conditions on which you do!
-
-So, this method can get cleaner still with: 
-
-````
-(defn add-form-data-to-state [request state]
-  (let [form-data (get-form-data request)
-        response (some-> form-data vals first keyword)]
-    (cond-> state 
-        (seq form-data) (assoc :response response))))
-````
-It will only conditionally modify the state based on the result of (seq form-data). You 
-could even have multiple conditions and transformations listed, and it will go through all of them, 
-but only perform the ones who have conditions that are true.
+#### Estimates are not Commitments
+Cohn's final warning is that Estimates are not the same as Commitments. There's a probability in every 
+project and the development team may feel 100% certain they can deliver it as currently specified in 1 
+year and 0% chance they can deliver it tomorrow, the real date is somewhere in between and the 
+ likely with a confidence level somewhere below 100%. If you want 100% confidence, it would have to be 
+far too long a time frame. So, to accept a reasonable time frame, we must accept that an estimate is 
+_not_ a commitment.
 
 
 **Cheers!**
