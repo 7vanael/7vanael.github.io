@@ -15,12 +15,12 @@ Add and commit the changes you need, easy peasy.
 
 Then, I needed to make it a submodule of another project. 
 
-```clojure
+```
  git submodule add <git-cloneable-url> <optional-file-path>
 ```
 Then, there should be a `.gitmodules` file, and it needs to have info about how to find the submodules for your 
 project: 
-```clojure
+```
 [submodule "blog"]
 	path = blog
 	url = git@github.com:cleancoders/blog.git
