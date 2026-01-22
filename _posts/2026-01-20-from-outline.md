@@ -193,11 +193,11 @@ git pull --recurse-submodules
 
 An option that might be even better for your team is to update your git config to just always pull in the submodule updates whenever you pull changes from the parent project by running
 ```bash
-    git config --global submodule.recurse true
+git config --global submodule.recurse true
 ```
 This step reduces the change to the team's workflow, and so is maybe easier to get everyone to stick with! 
 
-If you pull in changes from the submodule (so now reference a newer commit), you will have to do a git add/commit/push to propagate that change to all users of the parent project. 
+Anytime you pull in changes from the submodule (so now reference a newer commit), you will have to do a git add/commit/push to propagate that change to all users of the parent project. 
 
 #### Making changes to the submodule
 You _can_ make changes to the submodule from the parent module. Your IDE changelog may be helpful
