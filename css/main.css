@@ -60,3 +60,11 @@ ul.posts {
 ul.posts li {
     list-style: none;
 }
+
+.markdown blockquote {
+    background-color: #e6e1e1;
+    padding: .85rem 1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+    border-radius: 5px
+}
