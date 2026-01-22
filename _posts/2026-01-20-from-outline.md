@@ -125,10 +125,10 @@ your-parent-project-root/
 ```
 There's a small problem brewing here with how you are going to build and deploy your parent project. Your submodule, if put at the root directory, isn't in the parent `src` path where your build process will see it. You don't want to put the entire submodule in the parent `src` path, because it will then also include all the child project's .git files, readme, and everything else that just doesn't belong! _Now_ what??
 
-#### What are symlinks?
-Symlinks, or symbolic links, are a way to put a pointer in your directory to somewhere else.
-It won't move the files (which is great, because that's what we've been working around doing this whole time), it
-will just provide a path to traverse.
+>#### What are symlinks?
+>Symlinks, or symbolic links, are a way to put a pointer in your directory to somewhere else.
+>It won't move the files (which is great, because that's what we've been working around doing this whole time), it will just provide a path to traverse.
+>This is great, because we don't want to actually move the files, but we want them to be treated like they're where they should be! 
 
 ### Sym-linking your submodule into your project
 Creating a symlink is best done from the directory that you want to be the parent of your targeted
@@ -172,6 +172,7 @@ ln -s child-project-root/src/child-package1 src/child-package1
 "src/child-package1" is not a valid directory or file name!
 
 
+Now, when you build your project, all the directories can appear to be exactly where they should be without any of the extra bits that don't belong! Nice. 
 
 ### Updating the submodule and propagating changes to the parent project
 So you have your submodule set up, it works, your parent project can see and use it, but doesn't try to track the changes to the submodule files. Fabulous. The set-up is complete! But now you want to use it. The entire premise of all of this was so that we could make changes to the submodule and see and use those changes in the parent project(s). 
