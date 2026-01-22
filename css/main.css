@@ -8,7 +8,7 @@ body {
 }
 nav ul, footer ul {
     font-family: 'Helvetica', 'Arial', 'Sans-Serif', sans-serif;
-    padding: 0px;
+    padding: 0;
     list-style: none;
     font-weight: bold;
 }
