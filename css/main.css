@@ -61,7 +61,7 @@ ul.posts li {
     list-style: none;
 }
 
-.markdown blockquote {
+blockquote {
     background-color: #76a9f4;
     padding: .85rem 1rem;
     font-style: italic;
