@@ -17,7 +17,7 @@ Ok, ok, no copied code. New plan: you'll break that section of code out of proje
 It might finally be time to talk about git submodules. Git submodules are the solution of choice when you want to share code between projects, organize a massive codebase by splitting it into discrete repos that still work together, or manage dependencies that don't belong in a package registry.
 I'll walk you through what submodules are, how to set one up, how to solve the nested-repo catch-22 with symlinks, and how to live with them day-to-day. By the end, you'll have one source of truth for shared code and the workflow to keep it in sync. Let's dive in!
 
-### What's a submodule?
+#### What's a submodule?
 Remember that contradiction from the intro? Git ignoring a repo inside a repo isn't a bug—it's working exactly as designed. Git's policy is simple: one .git folder = one repository. When you nest repositories, Git doesn't want to accidentally track someone else's version control history. That would be chaos.
 But you do need a way to say "this folder should contain code from that other repo." You could just clone the repo directly into your project, but then you're stuck with a static snapshot. If you make updates to that code, how do you share those changes with your other projects? How do you pull in updates from elsewhere?
 This is what submodules solve. Instead of embedding another repository, you create a pointer to it.
@@ -40,6 +40,7 @@ It feels a bit awkward at first, but it does make sense that to propagate change
 Ok, that's all great theory, but how do you get it done?
 
 ### How to create a submodule
+#### Adding the submodule
 This is the easy part. To create a submodule, you run 
 
 ```bash
@@ -99,7 +100,8 @@ If you have submodules that have submodules themselves, go ahead and add `--recu
 
 Ok. _Now_ your team has submodules!
 
-### Building your project despite the catch-22 of nested git repositories
+### Linking the submodule to your project
+#### Building your project despite the catch-22 of nested git repositories
 Your project directory might now look a little like:
 
 ```bash
@@ -130,7 +132,7 @@ There's a small problem brewing here with how you are going to build and deploy 
 >It won't move the files (which is great, because that's what we've been working around doing this whole time), it will just provide a path to traverse.
 >This is great, because we don't want to actually move the files, but we want them to be treated like they're where they should be! 
 
-### Sym-linking your submodule into your project
+#### Sym-linking your submodule into your project
 Creating a symlink is best done from the directory that you want to be the parent of your targeted
 file or directory. In this case, if you wanted `child-package1` to be usable by your parent project,
 you should navigate to the parent-project's src folder.
