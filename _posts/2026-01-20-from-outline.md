@@ -9,17 +9,23 @@ date: 2026-01-20
 
 
 Here's a fun contradiction: Git is designed to never lose your work, but the moment you nest one Git repository inside another, Git pretends the inner one doesn't exist. The files are there, you can see them and make changes to them, but those changes won't be tracked in the parent project's git. 
+
 But, 'Why would you ever want to put one git project inside another?' you ask. Well, what if you find that some section of your Project A (lets say it's some useful UI components) would actually be really helpful if you could also use it in Projects B & C? 
 
 #### How can you use the same code in multiple places?
 You might just copy those files into projects B & C. But, you know that over time those files will start to drift apart. A little bug fix while you're in A, a little feature upgrade while you're in B, an innocent renaming of a method while you're in C. No way to keep these files in sync! Getting all the right changes from each project merged to make it the best version is all but impossible. Besides which, copying code is almost never the right answer! 
+
 Ok, ok, no copied code. New plan: you'll break that section of code out of project A and make it its own project, project X. Then, you'll release it to the package manager (npm? pip? cargo?) and just use it as a dependency. Alright... So, now every time you want to make (and use!) a change from project X, you just need to update the change log, update the version, build it and publish it. Well... that could kind of work, but geeze, if this is still being actively developed, you're going to end up with dozens of versions in a month with not very useful changelog messages and preposterous versions like 1.2.176. Aside from this causing often permanent noise in the package registry (lets hope you aren't trying to build a public reputation!), you'll still not be saved from then having to go update the version in each of your projects A B & C to see the changes. 
+
 It might finally be time to talk about git submodules. Git submodules are the solution of choice when you want to share code between projects, organize a massive codebase by splitting it into discrete repos that still work together, or manage dependencies that don't belong in a package registry.
+
 I'll walk you through what submodules are, how to set one up, how to solve the nested-repo catch-22 with symlinks, and how to live with them day-to-day. By the end, you'll have one source of truth for shared code and the workflow to keep it in sync. Let's dive in!
 
 #### What's a submodule?
 Remember that contradiction from the intro? Git ignoring a repo inside a repo isn't a bug—it's working exactly as designed. Git's policy is simple: one .git folder = one repository. When you nest repositories, Git doesn't want to accidentally track someone else's version control history. That would be chaos.
+
 But you do need a way to say "this folder should contain code from that other repo." You could just clone the repo directly into your project, but then you're stuck with a static snapshot. If you make updates to that code, how do you share those changes with your other projects? How do you pull in updates from elsewhere?
+
 This is what submodules solve. Instead of embedding another repository, you create a pointer to it.
 When you add a submodule, you're telling Git three things:
 
@@ -28,6 +34,7 @@ When you add a submodule, you're telling Git three things:
 - Which version to use - A specific commit SHA, not "whatever's latest"
 
 This creates a difference between what git tracks, and what you see in your file structure. When you navigate to the submodule directory in your parent project, you'll see everything that's in the child project: all the files, all the code. It looks like a normal folder. And in fact, it is a normal Git repository. You can cd into it, make changes, commit, push. It's fully functional.
+
 But, your parent repository? It doesn't care about what's inside that folder. It only cares about the bookmark: "This folder should contain commit XYZ from that repo over there." When you make those changes in the child repo, the only changes your parent repo will see is a single line change in the directory of your submodule with a new commit SHA.  
 
 #### The two-repository dance
@@ -216,7 +223,9 @@ git add/commit/push for the parent project to share the update with the rest of 
 ##### Two projects. Two commits. Two pushes.
 
 You may find it is easier to keep straight if you make changes to the submodule from the submodule projects (not your parent project). This way, the parent project will always need the `git submodule update --remote` or `git pull --recurse-submodules` when you want to pull in the latest submodule changes.
+
 If you're the first to pull in the changes, you'll see a change to the git SHA for your submodule that will be shared with the rest of the project users when you commit and push the change. It doesn't matter if you make the change to the submodule from within the parent project, or if you open the submodule project and make the change to it directly.
+
 Because they are _two_ separate repositories, you will always have to make _two_ commits to propagate a change to both.
 
 
@@ -224,6 +233,7 @@ Because they are _two_ separate repositories, you will always have to make _two_
 
 #### The submodule does not appear in your directory
 If you've run `git submodule update --init` and the submodule does not appear in your directory, there are a couple of options. First, verify that the `.gitsubmodule` file is present and has the required path and url for your submodule.
+
 It's possible that, especially if working on a team, a commit may have been made that deleted the directory for the submodule.
 If the `.gitsubmodule` file is still there, or visible in your git history, you should be able to re-initialize the submodule(s) by running:
 
@@ -303,10 +313,14 @@ parent-project/src % git ls-tree head
 
 We can see from this view that our parent-project sees the child-project as a commit, `160000`.
 Perfect, that's exactly what we would expect.
+
 Our child-packages look different inside src! Good, because they are actually symbolic links that git is _not_ going to treat the same way as our regular directories!
+
 This is a great way to verify what exactly git believes each item in your project is, and, if you find a discrepancy, that's a good place to start troubleshooting.
 
 ### The rewards
 We've made it all the way through! You have a project with a submodule symlinked where your build can see it—code that's separated, not duplicated, with a single source of truth. You know how to make changes in the submodule and propagate them to the parent, you have git config settings to automate pulls, and you even have troubleshooting tips for when things go sideways.
+
 With explicit version control that you can point to a branch or a specific commit, you can have fine-tuned control over what each of your parent projects get and when. Yes, it's two commits, but it skips a version update, a change log and polluting the package registry with version 1.2.176! 
+
 There's really very little that's added to ongoing maintenance once the set-up is complete, so the hard part is over, and now you can go forth, and point responsibly!
