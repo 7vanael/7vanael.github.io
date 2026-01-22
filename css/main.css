@@ -62,7 +62,7 @@ ul.posts li {
 }
 
 blockquote {
-    background-color: #76a9f4;
+    background-color: rgba(118, 169, 244, 0.7);
     padding: .85rem 1rem;
     font-style: italic;
     margin-bottom: 1rem;
