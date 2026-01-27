@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Corduroy Pants"
-date: 2026-01-21
+date: 2026-01-26
 ---
 
 I've been thinking a lot lately about these corduroy pants.

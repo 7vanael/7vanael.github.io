@@ -2,10 +2,18 @@
 	<html>
 		<head>
 			<title>{{ page.title }}</title>
-			<!-- link to main stylesheet -->
+
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link rel="stylesheet" type="text/css" href="/css/main.css">
 		</head>
 		<body>
+		{% if page.url == "/" %}
+		<div class="site-header">
+			<h1>Kristi Korn</h1>
+			<p>Software Craftsman | Clean Coder | Perpetual Learner</p>
+		</div>
+		{% endif %}
 			<nav>
 	    		<ul>
 	        		<li><a href="/">Home</a></li>
@@ -21,8 +29,10 @@
 			</div><!-- /.container -->
 			<footer>
 	    		<ul>
-	        		<li><a href="mailto:kristi.korn@cleancoders.com">email</a></li>
-	        		<li><a href="https://github.com/7vanael">github.com/7vanael</a></li>
+	        		<li><a href="mailto:kristi.korn7@gmail.com">kristi.korn7@gmail.com</a></li>
+	        		<li><a href="https://github.com/7vanael">
+													<img src="/resources/GitHub_invertocat_Black.png" alt="GitHub" class="github-icon">
+											</a></li>
 				</ul>
 			</footer>
 		</body>
