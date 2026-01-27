@@ -10,8 +10,15 @@
 		<body>
 		{% if page.url == "/" %}
 		<div class="site-header">
-			<h1>Kristi Korn</h1>
-			<p>Software Craftsman | Clean Coder | Perpetual Learner</p>
+			<div class="header-content">
+				<div class="header-text">
+					<h1>Kristi Korn</h1>
+					<p>Software Craftsman | Clean Coder | Perpetual Learner</p>
+				</div>
+				<div class="header-image">
+					<img src="/resources/kristi-korn.png" alt="Kristi Korn">
+				</div>
+			</div>
 		</div>
 		{% endif %}
 			<nav>
@@ -30,7 +37,9 @@
 			</div><!-- /.container -->
 			<footer>
 	    		<ul>
-	        		<li><a href="mailto:kristi.korn7@gmail.com">kristi.korn7@gmail.com</a></li>
+	        		<li><a href="mailto:kristi.korn7@gmail.com">
+														<img src="/resources/email-icon.png" alt="Email" class="email-icon">
+													</a></li>
 	        		<li><a href="https://github.com/7vanael">
 													<img src="/resources/GitHub_invertocat_Black.png" alt="GitHub" class="github-icon">
 											</a></li>
