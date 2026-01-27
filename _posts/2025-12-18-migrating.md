@@ -2,13 +2,14 @@
 layout: post
 title: "Migrating"
 date: 2025-12-18
+featured: true
 ---
 
 ## Migrating
 
-Oh my goodness, has it been a day. So, our github actions started failing after I pushed some changes 
+Oh my goodness, has it been a day. So, our GitHub actions started failing after I pushed some changes 
 last week that were brought to my attention yesterday. After some investigating, it seems the likely 
-culpret was that the migrations often had a database created in their namespace, almost always as a def 
+culprit was that the migrations often had a database created in their namespace, almost always as a def 
 
 ```clojure
 (def m-db (db/create (db/load-config) schemas-of-interest))
@@ -59,7 +60,7 @@ dereferenced!
 These steps got the migrations about 90% complete for being in the src. 
 There was one file in particular that gave me a ton of trouble. 
 
-One migration moved it's data into a temp field, then created the old field and then populated it with new data: 
+One migration moved its data into a temp field, then created the old field and then populated it with new data: 
 ```clojure
 
 (defn up []
@@ -77,7 +78,7 @@ Then it went on to put in the new version of the data on the old (new?) :phase o
 This is probably just fine if this code is run a single time. But, in testing, it is of course run multiple 
 times. And wouldn't you know it, I kept getting errors about trying to rename the attribute to a key that already 
 existed. How is that possible?? You can see that I created my migration database with a specific schema (that did *not* 
-have the :temp-phases or :temp-tasks fields), so why does it keep insisiting that those fields already exist?
+have the :temp-phases or :temp-tasks fields), so why does it keep insisting that those fields already exist?
 
 Well. I'll tell you why. It's because that migration-db is created with the correct schemas. But as soon as the first 
 pass through happens, that schema inside the created database is now modified. Sure, you can delete the data from the 
