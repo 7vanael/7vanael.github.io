@@ -466,3 +466,57 @@ ul.posts.all-posts li {
     padding-top: 2rem;
     border-top: 2px solid var(--border-gray);
 }
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+.post-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-gray);
+    gap: 1rem;
+}
+
+.post-nav-prev,
+.post-nav-next {
+    flex: 1;
+}
+
+.post-nav-prev {
+    text-align: left;
+}
+
+.post-nav-home {
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.post-nav-next {
+    text-align: right;
+}
+
+.post-nav a {
+    font-weight: 500;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-nav a:hover {
+    color: var(--primary-dark);
+    text-decoration: none;
+}
