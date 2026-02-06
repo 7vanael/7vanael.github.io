@@ -4,53 +4,17 @@ title: AI Tic-Tac-Toe
 ---
 <div class="game-page">
   <h1>AI Tic-Tac-Toe</h1>
+  <p>A neural-network-themed tic-tac-toe game built with ClojureScript and Reagent.</p>
 
-  <div class="game-tabs">
-    <button class="game-tab active" onclick="switchTab('clojure', this)">ClojureScript Version</button>
-    <button class="game-tab" onclick="switchTab('csharp', this)">C# Version</button>
-  </div>
+  <iframe src="./resources/ai-ttt/index.html"
+          width="100%"
+          height="950"
+          title="AI Tic-Tac-Toe Game">
+  </iframe>
 
-  <div id="tab-clojure" class="tab-content active">
-    <p>A neural-network-themed tic-tac-toe game built with ClojureScript and Reagent.</p>
-
-    <iframe src="./resources/ai-ttt/index.html"
-            width="100%"
-            height="950"
-            title="AI Tic-Tac-Toe Game">
-    </iframe>
-
-    <div class="game-description">
-      <h2>About this project</h2>
-      <p>An enhanced version of the classic Tic-Tac-Toe game featuring an animated neural network background,
-        multiple difficulty levels, and a sleek dark UI. Built with ClojureScript, Reagent, and HTML5 Canvas.</p>
-    </div>
-  </div>
-
-  <div id="tab-csharp" class="tab-content">
-    <p>A test-driven tic-tac-toe engine built in C# with .NET 8, featuring minimax AI with alpha-beta pruning.
-      This is the browser frontend for the same game logic that also runs as a CLI app and ASP.NET Web API.</p>
-
-    <iframe src="./resources/csharp-ttt/index.html"
-            width="100%"
-            height="650"
-            title="C# Tic-Tac-Toe Game">
-    </iframe>
-
-    <div class="game-description">
-      <h2>About this project</h2>
-      <p>Built test-first with xUnit, the C# version implements the full game engine as a class library:
-        an extensible NxN board, pluggable player strategies via an <code>IPlayer</code> interface,
-        and an unbeatable minimax AI with alpha-beta pruning. The same core library powers a CLI app,
-        an ASP.NET Web API, and this standalone JavaScript port of the game logic.</p>
-    </div>
+  <div class="game-description">
+    <h2>About this project</h2>
+    <p>An enhanced version of the classic Tic-Tac-Toe game featuring an animated neural network background,
+      multiple difficulty levels, and a sleek dark UI. Built with ClojureScript, Reagent, and HTML5 Canvas.</p>
   </div>
 </div>
-
-<script>
-function switchTab(tab, btn) {
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.game-tab').forEach(el => el.classList.remove('active'));
-    document.getElementById('tab-' + tab).classList.add('active');
-    btn.classList.add('active');
-}
-</script>
