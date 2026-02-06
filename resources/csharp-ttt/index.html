@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tic-Tac-Toe</h1>
+
+        <div id="menu">
+            <h2>Choose Game Mode</h2>
+            <button onclick="startGame('pvp')">Human vs Human</button>
+            <button onclick="startGame('easy')">Human vs Computer (Easy)</button>
+            <button onclick="startGame('hard')">Human vs Computer (Hard)</button>
+        </div>
+
+        <div id="game" class="hidden">
+            <div id="status"></div>
+            <div id="board"></div>
+            <button id="new-game-btn" class="hidden" onclick="showMenu()">New Game</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
