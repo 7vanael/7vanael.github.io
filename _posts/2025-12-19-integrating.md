@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "Integrating"
+title: "Migrating 2: Integrating"
 date: 2025-12-19
+featured: true
 ---
 
 ## Integrating
